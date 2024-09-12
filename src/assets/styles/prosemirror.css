@@ -1,0 +1,48 @@
+[data-theme="light"] {
+  --drag: rgb(0, 0, 0);
+  --drag-hover: rgb(0, 0, 0, 0.5);
+  --drag-active: rgb(40, 40, 40);
+}
+
+[data-theme="dark"] {
+  --drag: rgb(255, 255, 255);
+  --drag-hover: rgba(255, 255, 255, 0.5);
+  --drag-active: rgb(210, 210, 210);
+}
+
+.drag-handle {
+  position: fixed;
+  opacity: 1;
+  transition: opacity ease-in 0.2s;
+  border-radius: 0.25rem;
+  background-color: var(--drag);
+  width: 1.2rem;
+  height: 1.5rem;
+  z-index: 50;
+  cursor: grab;
+
+  &:hover {
+    background-color: var(--drag-hover);
+    transition: background-color 0.2s;
+  }
+
+  &:active {
+    background-color: var(--drag-active);
+    transition: background-color 0.2s;
+    cursor: grabbing;
+  }
+
+  &.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    display: none;
+    pointer-events: none;
+  }
+}
+
+.dark .drag-handle {
+  background-color: red;
+}

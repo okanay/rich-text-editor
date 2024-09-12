@@ -13,7 +13,7 @@ import { SubmitButton } from "./ui/submit-btn";
 type Options = { className: string; name: string };
 export const linkOptions: Record<number, Options> = {
   0: {
-    className: "w-fit h-fit px-2 py-1 bg-red-400 rounded",
+    className: "w-fit h-fit px-2 py-1 bg-blue-400 rounded dark:bg-blue-500",
     name: "add-style",
   },
   1: {

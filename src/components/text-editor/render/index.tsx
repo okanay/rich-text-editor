@@ -9,6 +9,7 @@ import { paragraph } from "./paragraph";
 import { text } from "./text";
 import { CodeNodeEditorRender } from "../extensions/code-node";
 import { ImageNodeEditorRender } from "../extensions/image-node";
+import { InfoNodeEditorRender } from "../extensions/info-node";
 
 const handlers: NodeHandlers = {
   doc: doc,
@@ -29,6 +30,13 @@ const handlers: NodeHandlers = {
   },
   imageNode: (props) => {
     return <ImageNodeEditorRender node={props.node} />;
+  },
+  infoNode: (props) => {
+    return (
+      <InfoNodeEditorRender node={props.node}>
+        {props.children}
+      </InfoNodeEditorRender>
+    );
   },
 };
 

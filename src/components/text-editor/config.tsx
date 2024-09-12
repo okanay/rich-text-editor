@@ -21,6 +21,7 @@ import { LetterSpacingMark } from "./extensions/letter-spacing-mark";
 import { TextDecorationMark } from "./extensions/text-decoration-mark";
 import { CodeNode } from "./extensions/code-node";
 import { ImageNode } from "./extensions/image-node";
+import { InfoNode } from "./extensions/info-node";
 // Constants
 export const c = {
   AUTO_SAVE_LOCAL_STORAGE_KEY: "tiptap-auto-save",
@@ -49,6 +50,7 @@ export const useEditorConfig = () => {
       LetterSpacingMark,
       TextDecorationMark,
       CodeNode,
+      InfoNode,
     ],
     immediatelyRender: false,
     content: getSavedContent(),

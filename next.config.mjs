@@ -8,6 +8,11 @@ const nextConfig = {
         port: "8080",
         pathname: "/assets/**",
       },
+      {
+        protocol: "https",
+        hostname: "file.pdfrouters.com",
+        pathname: "/**",
+      },
     ],
   },
 };

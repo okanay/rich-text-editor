@@ -1,13 +1,15 @@
 [data-theme="light"] {
-  --drag: rgb(0, 0, 0);
-  --drag-hover: rgb(0, 0, 0, 0.5);
-  --drag-active: rgb(40, 40, 40);
+  --drag: rgba(0, 0, 0, 0);
+  --drag-hover: rgba(0, 0, 0, 0.05);
+  --drag-active: rgba(40, 40, 40, 0.5);
+  --drag-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" /></svg>');
 }
 
 [data-theme="dark"] {
-  --drag: rgb(255, 255, 255);
-  --drag-hover: rgba(255, 255, 255, 0.5);
-  --drag-active: rgb(210, 210, 210);
+  --drag: rgba(255, 255, 255, 0);
+  --drag-hover: rgba(255, 255, 255, 0.2);
+  --drag-active: rgba(210, 210, 210, 0.5);
+  --drag-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24" stroke-width="1.5" stroke="%23fff"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" /></svg>');
 }
 
 .drag-handle {
@@ -15,8 +17,11 @@
   opacity: 1;
   transition: opacity ease-in 0.2s;
   border-radius: 0.25rem;
-  background-color: var(--drag);
-  width: 1.2rem;
+  background-image: var(--drag-icon);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 1.5rem;
   height: 1.5rem;
   z-index: 50;
   cursor: grab;

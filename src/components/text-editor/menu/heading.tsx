@@ -40,10 +40,10 @@ export const headingOptions: Record<number, Options> = {
 
 const triggerName = "H";
 const toggleName = "heading";
+const generateKey = (index: number) => `${toggleName}-${index}`;
 const toggleOptions = (index: number) => ({
   level: index + 1,
 });
-const generateKey = (index: number) => `${toggleName}-${index}`;
 
 export const HeadingEditorButton: React.FC<{ editor: Editor }> = (props) => {
   const isActive = props.editor.isActive(toggleName);

@@ -17,17 +17,14 @@ export const ImageEditorButton: React.FC<{ editor: Editor }> = ({ editor }) => {
   const [dialogType, setDialogType] = React.useState<DialogTypes>("Idle");
   const [closeOnSelect, setCloseOnSelect] = React.useState(false);
 
-  const addImage = useCallback(
-    (src: string, alt: string) => {
-      if (src && src.length > 0 && alt && alt.length > 0) {
-        // Add the image to the editor
-        editor.chain().focus().setNode(toggleName, { src, alt }).run();
-        // After adding the image, set the dialog type to idle
-        setDialogType("Idle");
-      }
-    },
-    [editor],
-  );
+  const addImage = (src: string, alt: string) => {
+    if (src && src.length > 0 && alt && alt.length > 0) {
+      // Add the image to the editor
+      editor.chain().focus().setNode(toggleName, { src, alt }).run();
+      // After adding the image, set the dialog type to idle
+      setDialogType("Idle");
+    }
+  };
 
   return (
     <>

@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { TipTapNode } from "@troop.com/tiptap-react-render";
 import { twMerge } from "tailwind-merge";
-import { useGetTheme } from "@/hooks/useGetTheme";
 import { fontFamilyOptions } from "../../menu/font-family";
 import { fontSizeOptions } from "../../menu/font-size";
 import { fontWeightOptions } from "../../menu/font-weight";
@@ -15,7 +14,6 @@ import {
 } from "../../menu/text-decoration";
 
 export const TextMark: React.FC<{ node: TipTapNode }> = ({ node }) => {
-  const { theme: mode } = useGetTheme();
   const { text, marks } = node;
 
   // If there are no marks, return the text as is
@@ -28,10 +26,6 @@ export const TextMark: React.FC<{ node: TipTapNode }> = ({ node }) => {
 
   // Get the class name and styles for the marks
   const className = twMerge(...orderedMarks.map(getClasses));
-  const combinedStyles = orderedMarks.reduce(
-    (styles, mark) => ({ ...styles, ...getStyles(mark, mode) }),
-    {},
-  );
 
   switch (orderedMarks[0]?.type) {
     case "link":
@@ -40,17 +34,12 @@ export const TextMark: React.FC<{ node: TipTapNode }> = ({ node }) => {
           href={orderedMarks[0].attrs.href}
           target={orderedMarks[0].attrs.target || "_self"}
           className={className}
-          style={{ ...combinedStyles }}
         >
           {text}
         </a>
       );
     default:
-      return (
-        <span className={className} style={{ ...combinedStyles }}>
-          {text}
-        </span>
-      );
+      return <span className={className}>{text}</span>;
   }
 };
 
@@ -61,8 +50,6 @@ const getClasses = (mark: any): string => {
       return "italic";
     case "link":
       return linkOptions[attrs.index].className;
-    case "highlight":
-      return attrs.highlight;
     case "fontWeight":
       return fontWeightOptions[attrs.index].className;
     case "fontSize":
@@ -106,31 +93,38 @@ const getOrderedMarks = (marks: any[]) =>
       (MarkTypeOrder[b.type as keyof typeof MarkTypeOrder] || Infinity),
   );
 
-const getStyles = (mark: any, mode: string): React.CSSProperties => {
-  const { attrs = {} } = mark;
-  switch (mark.type) {
-    case "fontColor":
-      let color = attrs.fontLight;
+// import { useGetTheme } from "@/hooks/useGetTheme";
 
-      if (mode === "dark") {
-        color = attrs.fontDark;
-      }
+// const combinedStyles = orderedMarks.reduce(
+//   (styles, mark) => ({ ...styles, ...getStyles(mark, mode) }),
+//   {},
+// );
 
-      return { color: color };
-    case "backgroundColor":
-      let backgroundColor = attrs.bgLightColor;
+// const getStyles = (mark: any, mode: string): React.CSSProperties => {
+//   const { attrs = {} } = mark;
+//   switch (mark.type) {
+//     case "fontColor":
+//       let color = attrs.fontLight;
 
-      if (mode === "dark") {
-        backgroundColor = attrs.bgDarkColor;
-      }
+//       if (mode === "dark") {
+//         color = attrs.fontDark;
+//       }
 
-      return {
-        backgroundColor: backgroundColor,
-        padding: "0.25rem 0.5rem",
-        borderRadius: "0.25rem",
-        border: `1px solid #d1d5db`,
-      };
-    default:
-      return {};
-  }
-};
+//       return { color: color };
+//     case "backgroundColor":
+//       let backgroundColor = attrs.bgLightColor;
+
+//       if (mode === "dark") {
+//         backgroundColor = attrs.bgDarkColor;
+//       }
+
+//       return {
+//         backgroundColor: backgroundColor,
+//         padding: "0.25rem 0.5rem",
+//         borderRadius: "0.25rem",
+//         border: `1px solid #d1d5db`,
+//       };
+//     default:
+//       return {};
+//   }
+// };

@@ -11,6 +11,7 @@ import { TextAlignEditorButton } from "./text-align";
 import { TextDecorationEditorButton } from "./text-decoration";
 import { CodeEditorButton } from "./prism-code";
 import { ImageEditorButton } from "./image";
+import { InfoEditorButton } from "./info";
 
 export const EditorMenu: React.FC<{ editor: Editor }> = ({ editor }) => {
   return (
@@ -21,6 +22,7 @@ export const EditorMenu: React.FC<{ editor: Editor }> = ({ editor }) => {
         <HeadingEditorButton editor={editor} />
         <CodeEditorButton editor={editor} />
         <ImageEditorButton editor={editor} />
+        <InfoEditorButton editor={editor} />
       </div>
       <div className="flex flex-wrap gap-2 border-b border-zinc-950/10 px-4 py-2 dark:border-zinc-50/20">
         <FontFamilyEditorButton editor={editor} />
